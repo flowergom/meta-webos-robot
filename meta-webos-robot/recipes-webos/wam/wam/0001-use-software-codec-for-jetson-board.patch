@@ -1,0 +1,23 @@
+From b8e87b9b0bea3768cac3470a5288169cdabeb023 Mon Sep 17 00:00:00 2001
+From: Minjae Kim <nate.kim@lge.com>
+Date: Tue, 23 Mar 2021 09:15:09 +0900
+Subject: [PATCH] use software codec for jetson board
+
+---
+ files/launch/systemd/webapp-mgr.sh.in | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/files/launch/systemd/webapp-mgr.sh.in b/files/launch/systemd/webapp-mgr.sh.in
+index b86074a..0826700 100644
+--- a/files/launch/systemd/webapp-mgr.sh.in
++++ b/files/launch/systemd/webapp-mgr.sh.in
+@@ -186,6 +186,7 @@ export WAM_COMMON_SWITCHES=" \
+     --touch-events=disabled \
+     --ui-disable-opaque-shader-program \
+     --user-data-dir=$WAM_DATA_PATH \
++    --disable-web-media-player-neva \
+     --webos-wam \ "
+ 
+ export WAM_LITE_SWITCHES=" \
+-- 
+2.17.1
