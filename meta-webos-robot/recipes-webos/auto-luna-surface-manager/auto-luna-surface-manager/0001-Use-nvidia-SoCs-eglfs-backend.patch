@@ -1,0 +1,34 @@
+From 7a109352c6a8d8a424a4060b7bcc53a210115e9b Mon Sep 17 00:00:00 2001
+From: Minjae Kim <flowergom@gmail.com>
+Date: Tue, 6 Apr 2021 07:29:31 +0000
+Subject: [PATCH] Use nvidia SoCs eglfs backend
+
+set QT_QPA_EGLFS_INTEGRATION as eglfs_kms_egldevice
+---
+ startup/product.env.in | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/startup/product.env.in b/startup/product.env.in
+index bcddba0..574d062 100644
+--- a/startup/product.env.in
++++ b/startup/product.env.in
+@@ -35,7 +35,7 @@ export WEBOS_COMPOSITOR_EXTENSIONS=
+ 
+ # Platform plugin to be used
+ export WEBOS_COMPOSITOR_PLATFORM="eglfs_webos"
+-export QT_QPA_EGLFS_INTEGRATION="eglfs_kms_webos"
++export QT_QPA_EGLFS_INTEGRATION="eglfs_kms_egldevice"
+ 
+ # Cursor timeout
+ export WEBOS_CURSOR_TIMEOUT=5000
+@@ -58,7 +58,7 @@ export WEBOS_COMPOSITOR_ADAPTIVE_FRAME_CALLBACK=1
+ export WEBOS_COMPOSITOR_IMPORT_PATH=@WEBOS_INSTALL_QML@/WebOSCompositor/AutoRSE
+ 
+ # Try to get WEBOS_COMPOSITOR_DISPLAY_CONFIG from configd
+-WEBOS_COMPOSITOR_DISPLAY_CONFIG=$(luna-send -n 1 -a com.webos.surfacemanager luna://com.webos.service.config/getConfigs '{"configNames":["com.webos.surfacemanager.displayConfig"]}' | grep -oE "\[\{.*\}\]" || echo "x")
++#WEBOS_COMPOSITOR_DISPLAY_CONFIG=$(luna-send -n 1 -a com.webos.surfacemanager luna://com.webos.service.config/getConfigs '{"configNames":["com.webos.surfacemanager.displayConfig"]}' | grep -oE "\[\{.*\}\]" || echo "x")
+ 
+ if [ "$WEBOS_COMPOSITOR_DISPLAY_CONFIG" == "x" ]; then
+     # Display device detection
+-- 
+2.17.1
